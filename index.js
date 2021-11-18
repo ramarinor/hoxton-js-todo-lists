@@ -43,7 +43,7 @@ while (userWantsTo !== 5) {
 			selectedTaskID = Number(prompt("The id you entered doesnt exist. Please try again!"));
 			selectedTask = window.todos.find((task) => task.id === selectedTaskID);
 		}
-		let newTaskTitle = prompt("Enter the new task title for the task:");
+		let newTaskTitle = prompt("Enter the new title for the task:");
 		let newTaskCompleted = window.confirm("Is the task done? Click Ok for Yes, Cancel for No.");
 		let indexToUpdate = window.todos.indexOf(selectedTask);
 		indexToUpdate = window.todos.indexOf(selectedTask);
@@ -57,7 +57,7 @@ while (userWantsTo !== 5) {
         1 - Show me my tasks again
         2 - Add a new task
         3 - Delete a task
-        4 - update a task
+        4 - Update a task
         5 - End the program`)
 	);
 	while (userWantsTo < 1 || userWantsTo > 5 || isNaN(userWantsTo)) {
