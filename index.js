@@ -23,9 +23,35 @@ while (userWantsTo !== 5) {
 	} else if (userWantsTo === 2) {
 		i++;
 		let taskName = prompt("What's the title of the task you want to add? ");
-		let taskCompleted = window.confirm("Is the task done or not? Click Ok for Yes, Cancel for No");
+		let taskCompleted = window.confirm("Is the task done or not? Click Ok for Yes, Cancel for No.");
 		window.todos.push({ userId: selectedUserID, id: i, title: taskName, completed: taskCompleted });
+		alert("You successfully added a new task!");
+	} else if (userWantsTo === 3) {
+		let selectedTaskID = Number(prompt("Enter the taskID you want to delete:"));
+		let selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		while (selectedTask === undefined) {
+			selectedTaskID = Number(prompt("The id you entered doesnt exist. Please try again!"));
+			selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		}
+		let indexToDelete = window.todos.indexOf(selectedTask);
+		window.todos.splice(indexToDelete, 1);
+		alert("You successfully deleted a task!");
+	} else if (userWantsTo === 4) {
+		let selectedTaskID = Number(prompt("Enter the taskID you want to update:"));
+		let selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		while (selectedTask === undefined) {
+			selectedTaskID = Number(prompt("The id you entered doesnt exist. Please try again!"));
+			selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		}
+		let newTaskTitle = prompt("Enter the new task title for the task:");
+		let newTaskCompleted = window.confirm("Is the task done? Click Ok for Yes, Cancel for No.");
+		let indexToUpdate = window.todos.indexOf(selectedTask);
+		indexToUpdate = window.todos.indexOf(selectedTask);
+		window.todos[indexToUpdate].title = newTaskTitle;
+		window.todos[indexToUpdate].completed = newTaskCompleted;
+		alert("You successfully updated a task!");
 	}
+
 	userWantsTo = Number(
 		prompt(`What do you want to do next? Type:
         1 - Show me my tasks again
