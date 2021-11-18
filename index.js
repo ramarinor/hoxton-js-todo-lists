@@ -9,7 +9,6 @@ while (selectedUserID < 1 || selectedUserID > 10 || isNaN(selectedUserID)) {
 	selectedUserID = Number(prompt("This user doesn't exist, please type a number between 1 and 10"));
 }
 let selectedUser = window.users.find((user) => user.id === selectedUserID);
-
 let userWantsTo = 1;
 let i = 200;
 while (userWantsTo !== 5) {
@@ -17,7 +16,7 @@ while (userWantsTo !== 5) {
 		let selectedUserToDoList = window.todos.filter((todo) => todo.userId === selectedUserID);
 		let message = `These are ${selectedUser.name}'s tasks: `;
 		for (const todo of selectedUserToDoList) {
-			message += `\n${todo.id}. ${todo.title}`;
+			message += `\n${todo.id}. ${todo.title} ${todo.completed ? "✓" : "x"}`;
 		}
 		alert(message);
 	} else if (userWantsTo === 2) {
@@ -28,20 +27,20 @@ while (userWantsTo !== 5) {
 		alert("You successfully added a new task!");
 	} else if (userWantsTo === 3) {
 		let selectedTaskID = Number(prompt("Enter the taskID you want to delete:"));
-		let selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		let selectedTask = window.todos.find((task) => task.id === selectedTaskID && task.userId === selectedUserID);
 		while (selectedTask === undefined) {
-			selectedTaskID = Number(prompt("The id you entered doesnt exist. Please try again!"));
-			selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+			selectedTaskID = Number(prompt("The id you entered doesn't exist for this user. Please try again!"));
+			selectedTask = window.todos.find((task) => task.id === selectedTaskID && task.userId === selectedUserID);
 		}
 		let indexToDelete = window.todos.indexOf(selectedTask);
 		window.todos.splice(indexToDelete, 1);
 		alert("You successfully deleted a task!");
 	} else if (userWantsTo === 4) {
 		let selectedTaskID = Number(prompt("Enter the taskID you want to update:"));
-		let selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+		let selectedTask = window.todos.find((task) => task.id === selectedTaskID && task.userId === selectedUserID);
 		while (selectedTask === undefined) {
-			selectedTaskID = Number(prompt("The id you entered doesnt exist. Please try again!"));
-			selectedTask = window.todos.find((task) => task.id === selectedTaskID);
+			selectedTaskID = Number(prompt("The id you entered doesn't exist for this user. Please try again!"));
+			selectedTask = window.todos.find((task) => task.id === selectedTaskID && task.userId === selectedUserID);
 		}
 		let newTaskTitle = prompt("Enter the new title for the task:");
 		let newTaskCompleted = window.confirm("Is the task done? Click Ok for Yes, Cancel for No.");
