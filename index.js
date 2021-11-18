@@ -13,7 +13,7 @@ let selectedUserToDoList = window.todos.filter((todo) => todo.userId === selecte
 
 message = `These are ${selectedUser.name}'s tasks: `;
 for (const todo of selectedUserToDoList) {
-	message += `\nTitle: ${todo.title}`;
+	message += `\n${todo.id}. ${todo.title}`;
 }
 
 alert(message);
