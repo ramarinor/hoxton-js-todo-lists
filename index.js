@@ -45,7 +45,6 @@ while (userWantsTo !== 5) {
 		let newTaskTitle = prompt("Enter the new title for the task:");
 		let newTaskCompleted = window.confirm("Is the task done? Click Ok for Yes, Cancel for No.");
 		let indexToUpdate = window.todos.indexOf(selectedTask);
-		indexToUpdate = window.todos.indexOf(selectedTask);
 		window.todos[indexToUpdate].title = newTaskTitle;
 		window.todos[indexToUpdate].completed = newTaskCompleted;
 		alert("You successfully updated a task!");
